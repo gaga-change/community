@@ -1,0 +1,32 @@
+{
+  "name": "community",
+  "version": "1.0.0",
+  "description": "基于Node.js 搭建的社区网站（swig + koa + mongodb），前端采用 layui 框架。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gaga-change/community.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gaga-change/community/issues"
+  },
+  "homepage": "https://github.com/gaga-change/community#readme",
+  "dependencies": {
+    "koa": "^2.5.1",
+    "koa-body": "^2.5.0",
+    "koa-logger": "^3.2.0",
+    "koa-mount": "^3.0.0",
+    "koa-router": "^7.4.0",
+    "koa-session": "^5.8.1",
+    "koa-static-cache": "^5.1.2",
+    "koa-views": "^6.1.4",
+    "mongoose": "^5.1.1",
+    "only": "0.0.2",
+    "swig": "^1.4.2"
+  }
+}
