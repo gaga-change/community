@@ -1,8 +1,11 @@
+const path = require('path')
 const Koa = require('koa')
 const mongoose = require('mongoose')
 const logger = require('koa-logger')
 const koaBody = require('koa-body')
 const session = require('koa-session')
+const staticCache = require('koa-static-cache')
+const views = require('koa-views')
 const {link: mongoConnectLink} = require('../config/mongo')
 const api = require('./api')
 const app = new Koa()
@@ -31,11 +34,18 @@ app.use(koaBody({jsonLimit: '10kb'}))
 app.use(session(CONFIG, app))
 // 日志信息输出
 app.use(logger())
+// 静态资源
+app.use(staticCache(path.resolve(__dirname, '../publish'), {
+    maxAge: 365 * 24 * 60 * 60,
+    gzip: true,
+    dynamic: true
+}))
+// 模板引擎
+app.use(views(path.resolve(__dirname, '../views'), {
+    map: { html: 'swig' }
+}))
 // Api 接口
 app.use(api)
-app.use(async (ctx) => {
-    ctx.body = '我的社区 - 1.0.0'
-})
 // 异常监听
 app.on('error', (err) => {
     console.error(err)

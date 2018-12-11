@@ -1,7 +1,6 @@
 const router = require('koa-router')()
+const pages = require('./pages')
 
-router.get('/', async ctx => {
-    ctx.body = 'test'
-})
+router.get('/', pages.home)
 
 module.exports = router.routes()
