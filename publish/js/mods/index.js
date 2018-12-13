@@ -6,7 +6,7 @@
  
 
 layui.define(['layer', 'laytpl', 'form', 'element', 'upload', 'util'], function(exports){
-  
+  window.pageInit && pageInit(layui)
   var $ = layui.jquery
   ,layer = layui.layer
   ,laytpl = layui.laytpl
