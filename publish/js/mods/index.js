@@ -6,7 +6,6 @@
  
 
 layui.define(['layer', 'laytpl', 'form', 'element', 'upload', 'util'], function(exports){
-  window.pageInit && pageInit(layui)
   var $ = layui.jquery
   ,layer = layui.layer
   ,laytpl = layui.laytpl
@@ -77,7 +76,6 @@ layui.define(['layer', 'laytpl', 'form', 'element', 'upload', 'util'], function(
           //   options.error && options.error();
           // }
         }, error: function(e){
-          console.log(e)
           layer.msg(e.responseText || '请求异常，请重试', {shift: 6});
           options.error && options.error(e);
         }
@@ -551,7 +549,9 @@ layui.define(['layer', 'laytpl', 'form', 'element', 'upload', 'util'], function(
   //表单提交
   form.on('submit(*)', function(data){
     var action = $(data.form).attr('action'), button = $(data.elem);
-    if (data.field.repass !== data.field.password)  {
+    // 验证码转小写
+    data.field.captcha && (data.field.captcha = data.field.captcha.toLocaleLowerCase())
+    if (data.field.repass && data.field.repass !== data.field.password)  {
       layer.msg('输入的两次密码不一致~', {shift: 6})
       return false
     }

@@ -11,7 +11,7 @@ module.exports = {
      */
     async register(ctx) {
         const { body } = ctx.request
-        ctx.assert(ctx.state.captcha != body.captcha, code.Unauthorized, '验证码错误')
+        ctx.assert(ctx.session.captcha == body.captcha, code.Unauthorized, '验证码错误')
         let user = only(body, 'username password name')
         const findUser = await User.findOne({ username: user.username })
 
@@ -52,6 +52,7 @@ module.exports = {
      */
     async login(ctx) {
         const { body } = ctx.request
+        ctx.assert(ctx.session.captcha == body.captcha, code.Unauthorized, '验证码错误')
         const user = only(body, 'username password')
         const findUser = await User.findOne({ username: user.username })
 

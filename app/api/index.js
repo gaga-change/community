@@ -12,8 +12,13 @@ router.get('/user/logout', pages.logout)
 // tools
 router.get('/captcha', tools.captcha)
 
-// auth
+// --- auth ---
+// 注册
 router.post('/api/user/reg', auth.register)
+// 退出登录
 router.get('/api/user/logout', auth.logout)
+// 登录
+router.post('/api/user/login', auth.login)
+
 
 module.exports = router.routes()

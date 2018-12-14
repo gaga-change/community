@@ -70,16 +70,3 @@
     </div>
 </div>
 {% endblock %}
-{% block script %}
-<script>
-    // 页面初始化
-    function pageInit(layui) {
-        var $ = layui.jquery
-        // 刷新验证码
-        $('.captcha').click(function(e) {
-            var target = $(e.target)
-            target.attr('src', '/captcha?v=' + Date.now())
-        })
-    }
-</script>
-{% endblock %}
