@@ -355,7 +355,6 @@ layui.define(['laypage', 'fly', 'element', 'flow'], function(exports){
         });
       });
     });
-
   };
 
   dom.minemsg[0] && gather.minemsg();

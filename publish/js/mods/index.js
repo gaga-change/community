@@ -69,14 +69,16 @@ layui.define(['layer', 'laytpl', 'form', 'element', 'upload', 'util'], function(
         data: data,
         url: url,
         success: function(res){
-          if(res.status === 0) {
-            success && success(res);
-          } else {
-            layer.msg(res.msg || res.code, {shift: 6});
-            options.error && options.error();
-          }
+          success && success(res)
+          // if(res.status === 0) {
+          //   success && success(res);
+          // } else {
+          //   layer.msg(res.msg || res.code, {shift: 6});
+          //   options.error && options.error();
+          // }
         }, error: function(e){
-          layer.msg('请求异常，请重试', {shift: 6});
+          console.log(e)
+          layer.msg(e.responseText || '请求异常，请重试', {shift: 6});
           options.error && options.error(e);
         }
       });
@@ -549,21 +551,26 @@ layui.define(['layer', 'laytpl', 'form', 'element', 'upload', 'util'], function(
   //表单提交
   form.on('submit(*)', function(data){
     var action = $(data.form).attr('action'), button = $(data.elem);
+    if (data.field.repass !== data.field.password)  {
+      layer.msg('输入的两次密码不一致~', {shift: 6})
+      return false
+    }
     fly.json(action, data.field, function(res){
-      var end = function(){
-        if(res.action){
-          location.href = res.action;
-        } else {
-          fly.form[action||button.attr('key')](data.field, data.form);
-        }
-      };
-      if(res.status == 0){
-        button.attr('alert') ? layer.alert(res.msg, {
-          icon: 1,
-          time: 10*1000,
-          end: end
-        }) : end();
-      };
+      location.href = '/'
+      // var end = function(){
+      //   if(res.action){
+      //     location.href = res.action;
+      //   } else {
+      //     fly.form[action||button.attr('key')](data.field, data.form);
+      //   }
+      // };
+      // if(res.status == 0){
+      //   button.attr('alert') ? layer.alert(res.msg, {
+      //     icon: 1,
+      //     time: 10*1000,
+      //     end: end
+      //   }) : end();
+      // };
     });
     return false;
   });
