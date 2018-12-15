@@ -8,6 +8,7 @@ router.get('/', pages.home)
 router.get('/user/reg', pages.userReg)
 router.get('/user/login', pages.userLogin)
 router.get('/user/logout', pages.logout)
+router.get('/post/add', pages.addPost)
 
 // tools
 router.get('/captcha', tools.captcha)

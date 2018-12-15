@@ -17,5 +17,9 @@ module.exports = {
     async logout(ctx, next) {
         ctx.session.user = null
         ctx.response.redirect('/user/login')
+    },
+    /** 发表帖子 */
+    async addPost(ctx, next) {
+        await ctx.render('post/add')
     }
 }
