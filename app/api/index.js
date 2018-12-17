@@ -2,6 +2,7 @@ const router = require('koa-router')()
 const pages = require('./pages')
 const tools = require('./tools')
 const auth = require('./auth')
+const post = require('./post')
 
 // page
 router.use(tools.state)
@@ -22,5 +23,7 @@ router.get('/api/user/logout', auth.logout)
 // 登录
 router.post('/api/user/login', auth.login)
 
+// --- post ---
+router.post('/api/posts', post.add)
 
 module.exports = router.routes()

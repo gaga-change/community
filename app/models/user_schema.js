@@ -29,7 +29,7 @@ const UserSchema = new Schema({
         trim: true,
         type: String
     }
-})
+}, {timestamps: true})
 
 /** 虚拟属性 */
 UserSchema.virtual('password').set(function set (password) {
