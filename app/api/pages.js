@@ -7,19 +7,19 @@ module.exports = {
     },
     /** 登入 */
     async userLogin(ctx, next) {
-        await ctx.render('user/login', {})
+        await ctx.render('user/login', ctx.state)
     },
     /** 注册 */
     async userReg(ctx, next) {
-        await ctx.render('user/reg', {})
+        await ctx.render('user/reg', ctx.state)
     },
     /** 退出登录 */
     async logout(ctx, next) {
         ctx.session.user = null
-        ctx.response.redirect('/user/login')
+        ctx.redirect('/user/login', ctx.state)
     },
     /** 发表帖子 */
     async addPost(ctx, next) {
-        await ctx.render('post/add')
+        await ctx.render('post/add', ctx.state)
     }
 }

@@ -4,11 +4,12 @@ const tools = require('./tools')
 const auth = require('./auth')
 
 // page
+router.use(tools.state)
 router.get('/', pages.home)
 router.get('/user/reg', pages.userReg)
 router.get('/user/login', pages.userLogin)
 router.get('/user/logout', pages.logout)
-router.get('/post/add', pages.addPost)
+router.get('/post/add',tools.auth, pages.addPost)
 
 // tools
 router.get('/captcha', tools.captcha)
