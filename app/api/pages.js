@@ -21,5 +21,8 @@ module.exports = {
     /** 发表帖子 */
     async addPost(ctx, next) {
         await ctx.render('post/add', ctx.state)
+    },
+    async userIndex(ctx, next) {
+        await ctx.render('user/index', ctx.state)
     }
 }
