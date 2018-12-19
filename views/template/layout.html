@@ -16,18 +16,18 @@
     <div class="fly-header layui-bg-black">
         <div class="layui-container">
             <a class="fly-logo" href="/">
-                <img src="//cdn.junn.top/01.jpg" alt="layui" style="max-height:37px">
+                <img src="//cdn.junn.top/web/image/logo.png?v=2" alt="layui" style="max-height:37px">
             </a>
             <ul class="layui-nav fly-nav layui-hide-xs">
                 <li class="layui-nav-item layui-this">
                     <a href="/"><i class="iconfont icon-jiaoliu"></i>交流</a>
                 </li>
-                <li class="layui-nav-item">
+                <!-- <li class="layui-nav-item">
                     <a href="case/case.html"><i class="iconfont icon-iconmingxinganli"></i>案例</a>
                 </li>
                 <li class="layui-nav-item">
                     <a href="http://www.layui.com/" target="_blank"><i class="iconfont icon-ui"></i>框架</a>
-                </li>
+                </li> -->
             </ul>
             <ul class="layui-nav fly-nav-user">
                 {% if !user %}
@@ -55,9 +55,9 @@
                 <li class="layui-nav-item">
                     <a class="fly-nav-avatar" href="javascript:;">
                         <cite class="layui-hide-xs">{{user.name}}</cite>
-                        <i class="iconfont icon-renzheng layui-hide-xs" title="认证信息：layui 作者"></i>
-                        <i class="layui-badge fly-badge-vip layui-hide-xs">VIP3</i>
-                        <img src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg">
+                        <!-- <i class="iconfont icon-renzheng layui-hide-xs" title="认证信息：layui 作者"></i>
+                        <i class="layui-badge fly-badge-vip layui-hide-xs">VIP3</i> -->
+                        <img src="//cdn.junn.top/01.jpg">
                     </a>
                     <dl class="layui-nav-child">
                         <dd><a href="user/set.html"><i class="layui-icon">&#xe620;</i>基本设置</a></dd>
@@ -73,7 +73,7 @@
     </div>
     {% block content %}{% endblock %}
     <div class="fly-footer">
-        <p><a href="/" target="_blank">前端面经社区</a> 2018 &copy; <a href="//junn.top" target="_blank">junn.top
+        <p><a href="/" target="_blank">前端社区</a> 2018 &copy; <a href="//junn.top" target="_blank">junn.top
                 出品</a></p>
         <p>
             <a href="//www.layui.com/template/fly/" target="_blank">获取社区模版</a>
