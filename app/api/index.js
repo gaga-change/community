@@ -10,7 +10,7 @@ router.get('/', pages.home)
 router.get('/user/reg', pages.userReg)
 router.get('/user/login', pages.userLogin)
 router.get('/user/logout', pages.logout)
-router.get('/user/index', pages.userIndex)
+router.get('/user/index',tools.auth, pages.userIndex)
 router.get('/post/add',tools.auth, pages.addPost)
 
 // tools
@@ -26,5 +26,6 @@ router.post('/api/user/login', auth.login)
 
 // --- post ---
 router.post('/api/posts', post.add)
+router.get('/api/users/:userId/posts', post.list)
 
 module.exports = router.routes()

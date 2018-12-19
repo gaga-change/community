@@ -14,7 +14,7 @@ const PostSchema = new Schema({
     },
     class: {
         type: String,
-        default: 1,
+            default: 1,
     }, // 类别
     title: {
         type: String,
@@ -66,23 +66,36 @@ PostSchema.pre('save', function (next) {
 
 /** 静态方法 */
 PostSchema.statics = {
-    _findOne(opt) {
-        return this._findOne(opt.query).select('-markdown')
-    },
-    _findAll({
+    // findOne(opt) {
+    //     return this._findOne(opt.query).select('-markdown')
+    // },
+    findAll({
         page = 1,
         pageSize = 20,
-        select = '-content -markdown',
+        select = '-browser -version -project',
         criteria = {}
     } = {}) {
         pageSize = Math.min(30, pageSize)
-        return this.find(criteria)
+        
+        return Promise.all([
+            this.find(criteria)
             .select(select)
             .sort({
                 date: -1
             })
             .limit(pageSize)
-            .skip((page - 1) * pageSize)
+            .skip((page - 1) * pageSize),
+            this.countDocuments(criteria)
+        ]).then(res => {
+            return {
+                posts: res[0],
+                page: {
+                    count: res[1],
+                    page,
+                    pageSize
+                }
+            }
+        })
     },
 }
 
