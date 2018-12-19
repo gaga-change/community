@@ -27,7 +27,7 @@ layui.define(['laypage', 'fly', 'element', 'flow'], function (exports) {
   //我的相关数据
   var elemUC = $('#LAY_uc'), elemUCM = $('#LAY_ucm');
   gather.minelog = {};
-  gather.mine = function (index, type, url) {
+  gather.mine = function (index, type, url, othis) {
     var tpl = [
       //求解
       '{{# for(var i = 0; i < d.posts.length; i++){ }}\
@@ -115,6 +115,7 @@ layui.define(['laypage', 'fly', 'element', 'flow'], function (exports) {
             pageSize: 10
           }, function (res) {
             view(res);
+            othis.find('[lay-filter=num]').text(res.page.count)
             gather.minelog['mine-jie-page-' + curr] = res;
             now || laypage.render({
               elem: 'LAY_page'
@@ -139,7 +140,7 @@ layui.define(['laypage', 'fly', 'element', 'flow'], function (exports) {
   if (elemUC[0]) {
     layui.each(dom.mine.children(), function (index, item) {
       var othis = $(item)
-      gather.mine(index, othis.data('type'), othis.data('url'));
+      gather.mine(index, othis.data('type'), othis.data('url'), othis);
     });
   }
 

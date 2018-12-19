@@ -50,8 +50,8 @@
     -->
     <div class="layui-tab layui-tab-brief" lay-filter="user" id="LAY_uc">
       <ul class="layui-tab-title" id="LAY_mine">
-        <li data-type="mine-jie" data-url="/api/users/{{user._id}}/posts" lay-id="index" class="layui-this">我发的帖（<span>89</span>）</li>
-        <li data-type="collection" data-url="/collection/find/" lay-id="collection">我收藏的帖（<span>16</span>）</li>
+        <li data-type="mine-jie" data-url="/api/users/{{user._id}}/posts" lay-id="index" class="layui-this">我发的帖（<span lay-filter="num"></span>）</li>
+        <!-- <li data-type="collection" data-url="/collection/find/" lay-id="collection">我收藏的帖（<span>16</span>）</li> -->
       </ul>
       <div class="layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
         <div class="layui-tab-item layui-show">
