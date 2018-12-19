@@ -40,7 +40,17 @@ const PostSchema = new Schema({
         type: String,
         default: '',
         trim: true
-    } // 浏览器
+    }, // 浏览器
+    // 点击量
+    hits: {
+        type: Number,
+        default: 0
+    },
+    // 评论数
+    comment: {
+        type: Number,
+        default: 0
+    }
 }, {
     timestamps: true
 })
@@ -76,12 +86,12 @@ PostSchema.statics = {
         criteria = {}
     } = {}) {
         pageSize = Math.min(30, pageSize)
-        
+
         return Promise.all([
             this.find(criteria)
             .select(select)
             .sort({
-                date: -1
+                createdAt: -1
             })
             .limit(pageSize)
             .skip((page - 1) * pageSize),

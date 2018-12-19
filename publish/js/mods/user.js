@@ -30,29 +30,29 @@ layui.define(['laypage', 'fly', 'element', 'flow'], function (exports) {
   gather.mine = function (index, type, url) {
     var tpl = [
       //求解
-      '{{# for(var i = 0; i < d.rows.length; i++){ }}\
+      '{{# for(var i = 0; i < d.posts.length; i++){ }}\
       <li>\
-        {{# if(d.rows[i].collection_time){ }}\
-          <a class="jie-title" href="/jie/{{d.rows[i].id}}/" target="_blank">{{= d.rows[i].title}}</a>\
-          <i>{{ d.rows[i].collection_time }} 收藏</i>\
+        {{# if(d.posts[i].collection_time){ }}\
+          <a class="jie-title" href="/jie/{{d.posts[i].id}}/" target="_blank">{{= d.posts[i].title}}</a>\
+          <i>{{ d.posts[i].collection_time }} 收藏</i>\
         {{# } else { }}\
-          {{# if(d.rows[i].status == 1){ }}\
+          {{# if(d.posts[i].status == 1){ }}\
           <span class="fly-jing layui-hide-xs">精</span>\
           {{# } }}\
-          {{# if(d.rows[i].accept >= 0){ }}\
+          {{# if(d.posts[i].accept >= 0){ }}\
             <span class="jie-status jie-status-ok">已结</span>\
-          {{# } else { }}\
+          {{# } else if (false) { }}\
             <span class="jie-status">未结</span>\
           {{# } }}\
-          {{# if(d.rows[i].status == -1){ }}\
+          {{# if(d.posts[i].status == -1){ }}\
             <span class="jie-status">审核中</span>\
           {{# } }}\
-          <a class="jie-title" href="/jie/{{d.rows[i].id}}/" target="_blank">{{= d.rows[i].title}}</a>\
-          <i class="layui-hide-xs">{{ layui.util.timeAgo(d.rows[i].time, 1) }}</i>\
-          {{# if(d.rows[i].accept == -1){ }}\
-          <a class="mine-edit layui-hide-xs" href="/jie/edit/{{d.rows[i].id}}" target="_blank">编辑</a>\
+          <a class="jie-title" href="/jie/{{d.posts[i]._id}}/" target="_blank">{{= d.posts[i].title}}</a>\
+          <i class="layui-hide-xs">{{ layui.util.timeAgo(d.posts[i].createdAt, 1) }}</i>\
+          {{# if(true || d.posts[i].accept == -1){ }}\
+          <a class="mine-edit layui-hide-xs" href="/jie/edit/{{d.posts[i]._id}}" target="_blank">编辑</a>\
           {{# } }}\
-          <em class="layui-hide-xs">{{d.rows[i].hits}}阅/{{d.rows[i].comment}}答</em>\
+          <em class="layui-hide-xs">{{d.posts[i].hits}}阅/{{d.posts[i].comment}}答</em>\
         {{# } }}\
       </li>\
       {{# } }}'
@@ -61,7 +61,7 @@ layui.define(['laypage', 'fly', 'element', 'flow'], function (exports) {
     var view = function (res) {
       var html = laytpl(tpl[0]).render(res);
       dom.mine.children().eq(index).find('span').html(res.count);
-      elemUCM.children().eq(index).find('ul').html(res.rows.length === 0 ? '<div class="fly-msg">没有相关数据</div>' : html);
+      elemUCM.children().eq(index).find('ul').html(res.posts.length === 0 ? '<div class="fly-msg">没有相关数据</div>' : html);
     };
 
     var page = function (now) {
@@ -71,6 +71,7 @@ layui.define(['laypage', 'fly', 'element', 'flow'], function (exports) {
       } else {
         //我收藏的帖
         if (type === 'collection') {
+          return
           var nums = 10; //每页出现的数据量
           fly.json(url, {}, function (res) {
             res.count = res.rows.length;
@@ -107,16 +108,17 @@ layui.define(['laypage', 'fly', 'element', 'flow'], function (exports) {
                 }
               }
             });
-          });
+          }, {type: 'get'});
         } else {
-          fly.json('/api/' + type + '/', {
-            page: curr
+          fly.json(url, {
+            page: curr,
+            pageSize: 10
           }, function (res) {
             view(res);
             gather.minelog['mine-jie-page-' + curr] = res;
             now || laypage.render({
               elem: 'LAY_page'
-              , count: res.count
+              , count: res.page.count
               , curr: curr
               , jump: function (e, first) {
                 if (!first) {
@@ -124,7 +126,7 @@ layui.define(['laypage', 'fly', 'element', 'flow'], function (exports) {
                 }
               }
             });
-          });
+          }, {type: 'get'});
         }
       }
     };

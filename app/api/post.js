@@ -11,6 +11,12 @@ module.exports = {
         ctx.assert(ctx.session.captcha == body.captcha, code.Unauthorized, '验证码错误')
         const post = new Post(body)
         post.author = ctx.session.user
+        // for (var i = 0 ; i < 100; i ++) {
+        //     const post = new Post(body)
+        //     post.author = ctx.session.user
+        //     post.title += i
+        //     await post.save()
+        // }
         await post.save()
         ctx.body = post
     },
@@ -19,7 +25,6 @@ module.exports = {
             page,
             pageSize
         } = ctx.query
-        console.log(page, pageSize)
         const userId = ctx.params.userId
         ctx.body = await Post.findAll({
             criteria: {
