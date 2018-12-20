@@ -47,10 +47,10 @@ layui.define(['laypage', 'fly', 'element', 'flow'], function (exports) {
           {{# if(d.posts[i].status == -1){ }}\
             <span class="jie-status">审核中</span>\
           {{# } }}\
-          <a class="jie-title" href="/jie/{{d.posts[i]._id}}/" target="_blank">{{= d.posts[i].title}}</a>\
+          <a class="jie-title" href="/post/{{d.posts[i]._id}}/" target="_blank">{{= d.posts[i].title}}</a>\
           <i class="layui-hide-xs">{{ layui.util.timeAgo(d.posts[i].createdAt, 1) }}</i>\
           {{# if(true || d.posts[i].accept == -1){ }}\
-          <a class="mine-edit layui-hide-xs" href="/jie/edit/{{d.posts[i]._id}}" target="_blank">编辑</a>\
+          <a class="mine-edit layui-hide-xs" href="/post/edit/{{d.posts[i]._id}}" target="_blank">编辑</a>\
           {{# } }}\
           <em class="layui-hide-xs">{{d.posts[i].hits}}阅/{{d.posts[i].comment}}答</em>\
         {{# } }}\

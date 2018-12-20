@@ -1,3 +1,4 @@
+const Post = require('../models/post_schema')
 
 module.exports = {
     /** 主页(列表页) */
@@ -25,5 +26,13 @@ module.exports = {
     /** 用户主页 */
     async userIndex(ctx, next) {
         await ctx.render('user/index', ctx.state)
+    },
+    /** 帖子详情 */
+    async postDetail(ctx, next) {
+        const postId = ctx.params.postId
+        ctx.state.post = await Post.findById(postId).populate('author')
+        
+        console.log(ctx.state.post, postId)
+        await ctx.render('post/detail', ctx.state)
     }
 }

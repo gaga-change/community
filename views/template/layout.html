@@ -3,10 +3,10 @@
 
 <head>
     <meta charset="utf-8">
-    <title>前端社区 - {% block title %}{% endblock %}</title>
+    <title>{% block title %}{% endblock %} - {{theme}}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="keywords" content="fly,layui,前端社区">
-    <meta name="description" content="Fly社区是模块化前端UI框架Layui的官网社区，致力于为web开发提供强劲动力">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
     <link rel="stylesheet" href="//cdn.junn.top/layui/2.4.3/css/layui.css">
     <link rel="stylesheet" href="/css/global.css?v={{version}}">
     <link rel="stylesheet" href="/css/append.css?v={{version}}">
@@ -73,7 +73,7 @@
     </div>
     {% block content %}{% endblock %}
     <div class="fly-footer">
-        <p><a href="/" target="_blank">前端社区</a> 2018 &copy; <a href="//junn.top" target="_blank">junn.top
+        <p><a href="/" target="_blank">{{theme}}</a> 2018 &copy; <a href="//junn.top" target="_blank">junn.top
                 出品</a></p>
         <p>
             <a href="//www.layui.com/template/fly/" target="_blank">获取社区模版</a>
