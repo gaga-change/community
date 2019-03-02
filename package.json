@@ -4,6 +4,7 @@
   "description": "基于Node.js 搭建的社区网站（swig + koa + mongodb），前端采用 layui 框架。",
   "main": "index.js",
   "scripts": {
+    "start": "node .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
