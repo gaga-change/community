@@ -31,6 +31,14 @@ module.exports = {
     async userHome(ctx, next) {
         await ctx.render('user/home', ctx.state)
     },
+    /** 用户设置 */
+    async userSet(ctx, next) {
+        await ctx.render('user/set', ctx.state)
+    },
+    /** 用户消息 */
+    async userMessage(ctx, next) {
+        await ctx.render('user/message', ctx.state)
+    },
     /** 帖子详情 */
     async postDetail(ctx, next) {
         const postId = ctx.params.postId
