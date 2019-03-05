@@ -11,6 +11,7 @@ router.get('/user/reg', pages.userReg)
 router.get('/user/login', pages.userLogin)
 router.get('/user/logout', pages.logout)
 router.get('/user/index', tools.auth, pages.userIndex)
+router.get('/user/home', tools.auth, pages.userHome)
 router.get('/post/add', tools.auth, pages.addPost)
 router.get('/post/:postId', pages.postDetail)
 
