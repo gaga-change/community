@@ -23,6 +23,10 @@ module.exports = {
     async addPost(ctx, next) {
         await ctx.render('post/add', ctx.state)
     },
+    /** 帖子主页 */
+    async postIndex(ctx, next) {
+        await ctx.render('post/index', ctx.state)
+    },
     /** 用户中心 */
     async userIndex(ctx, next) {
         await ctx.render('user/index', ctx.state)

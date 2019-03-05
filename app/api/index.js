@@ -15,6 +15,7 @@ router.get('/user/home', tools.auth, pages.userHome)
 router.get('/user/set', tools.auth, pages.userSet)
 router.get('/user/message', tools.auth, pages.userMessage)
 router.get('/post/add', tools.auth, pages.addPost)
+router.get('/post/index', tools.auth, pages.postIndex)
 router.get('/post/:postId', pages.postDetail)
 
 // tools
