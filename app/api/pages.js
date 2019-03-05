@@ -43,6 +43,10 @@ module.exports = {
     async userMessage(ctx, next) {
         await ctx.render('user/message', ctx.state)
     },
+    /** 找回密码/重置密码 */
+    async userForget(ctx, next) {
+        await ctx.render('user/forget', ctx.state)
+    },
     /** 帖子详情 */
     async postDetail(ctx, next) {
         const postId = ctx.params.postId
